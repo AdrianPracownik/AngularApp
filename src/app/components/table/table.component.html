@@ -1,0 +1,46 @@
+<div>
+  <h4>
+    <span>Tabelka Produktów</span>
+  </h4>
+  <div>
+    <mat-table
+      #table
+      [dataSource]="dataSourceTable"
+    >
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> Id
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef> description
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.description}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-cell *matCellDef="let product">
+          <button mat-icon-button color="primary" (click)="onEdit(product)">
+            <mat-icon>create</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="onDelete(product)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <div *ngIf="dataSource.data.length < 0">
+      Brk rekordów
+    </div>
+    <div>
+      <button mat-button mat-flat-button color="primary" (click)="addProduct()">Dodaj</button>
+    </div>
+  </div>
+</div>
